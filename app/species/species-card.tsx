@@ -42,14 +42,16 @@ export default function SpeciesCard({ species }: { species: Species }) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              <h3 className="mt-3 text-2xl font-semibold">{species.scientific_name}</h3>
+              <h3 className="mt-3 text-2xl font-semibold">
+                {species.scientific_name ?? "No scientific name provided."}
+              </h3>
             </DialogTitle>
             <DialogDescription>
-              <h4 className="text-lg font-light italic">{species.common_name}</h4>
+              <h4 className="text-lg font-light italic">{species.common_name ?? "No common name provided."}</h4>
             </DialogDescription>
           </DialogHeader>
           <div className="relative h-40 w-full">
-            <Image src={species.image} alt={species.scientific_name} fill style={{ objectFit: "cover" }} />
+            <Image src={species.image ?? ""} alt={species.scientific_name} fill style={{ objectFit: "cover" }} />
           </div>
           <div>
             <p>
@@ -60,7 +62,7 @@ export default function SpeciesCard({ species }: { species: Species }) {
               {species.total_population ? species.total_population.toLocaleString() : "Unknown"}
             </p>
             <p>
-              <strong>Description:</strong> {species.description}
+              <strong>Description:</strong> {species.description ?? "No dialog provided."}
             </p>
           </div>
         </DialogContent>
