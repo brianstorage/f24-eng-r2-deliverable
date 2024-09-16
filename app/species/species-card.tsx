@@ -11,6 +11,14 @@ React server components don't track state between rerenders, so leaving the uniq
 can cause errors with matching props and state in child components if the list order changes.
 */
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import type { Database } from "@/lib/schema";
 import Image from "next/image";
 type Species = Database["public"]["Tables"]["species"]["Row"];
@@ -27,7 +35,36 @@ export default function SpeciesCard({ species }: { species: Species }) {
       <h4 className="text-lg font-light italic">{species.common_name}</h4>
       <p>{species.description ? species.description.slice(0, 150).trim() + "..." : ""}</p>
       {/* Replace the button with the detailed view dialog. */}
-      <Button className="mt-3 w-full">Learn More</Button>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button className="mt-3 w-full">Learn More</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              <h3 className="mt-3 text-2xl font-semibold">{species.scientific_name}</h3>
+            </DialogTitle>
+            <DialogDescription>
+              <h4 className="text-lg font-light italic">{species.common_name}</h4>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="relative h-40 w-full">
+            <Image src={species.image} alt={species.scientific_name} fill style={{ objectFit: "cover" }} />
+          </div>
+          <div>
+            <p>
+              <strong>Kingdom:</strong> {species.kingdom}
+            </p>
+            <p>
+              <strong>Total Population:</strong>{" "}
+              {species.total_population ? species.total_population.toLocaleString() : "Unknown"}
+            </p>
+            <p>
+              <strong>Description:</strong> {species.description}
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
