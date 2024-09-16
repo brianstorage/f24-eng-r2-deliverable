@@ -50,7 +50,7 @@ export default function SpeciesCard({ species }: { species: Species }) {
               <h4 className="text-lg font-light italic">{species.common_name ?? "No common name provided."}</h4>
             </DialogDescription>
           </DialogHeader>
-          <div className="relative h-40 w-full">
+          <div className="relative h-80 w-full">
             <Image src={species.image ?? ""} alt={species.scientific_name} fill style={{ objectFit: "cover" }} />
           </div>
           <div>
