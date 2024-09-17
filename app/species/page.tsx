@@ -27,8 +27,10 @@ export default async function SpeciesList() {
     <>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
         <TypographyH2>Species List</TypographyH2>
-        <AddSpeciesDialog userId={sessionId} />
-        <EditSpeciesDialog userId={sessionId} />
+        <div className="ml-auto flex gap-4">
+          <AddSpeciesDialog userId={sessionId} />
+          <EditSpeciesDialog userId={sessionId} />
+        </div>
       </div>
       <Separator className="my-4" />
       <div className="flex flex-wrap justify-center">
