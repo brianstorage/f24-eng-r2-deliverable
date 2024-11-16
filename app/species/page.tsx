@@ -31,7 +31,7 @@ export default async function SpeciesList() {
         <TypographyH2>Species List</TypographyH2>
         <div className="ml-auto flex gap-4">
           <AddSpeciesDialog userId={sessionId} />
-          <EditSpeciesDialog userId={sessionId} />
+          <EditSpeciesDialog species={species} userId={sessionId} />
         </div>
       </div>
       <Separator className="my-4" />
